@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!-- Declares this is an HTML5 document -->
+
+<html lang="en">
+<!-- Root element, lang="en" specifies English language -->
+
+<head>
+    <!-- HEAD section contains metadata and resources (not visible on page) -->
+    <meta charset="UTF-8">
+    <!-- Character encoding for proper text display -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the page responsive on mobile devices -->
+    
+    <title>HTML & CSS Practice</title>
+    <!-- Title shown in browser tab -->
+    
+    <style>
+        /* ========== CSS STYLES START HERE ========== */
+        /* CSS is written between <style> tags in the <head> */
+        /* Universal Selector (*) - applies to ALL elements */
+        * {
+            margin: 0;              /* Removes default margins */
+            padding: 0;             /* Removes default padding */
+            box-sizing: border-box; /* Makes width/height include padding and border */
+        }
+
+        /* Body Styling - applies to entire page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font stack */
+            line-height: 1.6;       /* Space between lines of text */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
+            min-height: 100vh;      /* Minimum height = 100% of viewport height */
+            padding: 20px;          /* Space around the edges */
+        }
+
+        /* Container Class - centers and styles the main content box */
+        .container {
+            max-width: 1200px;      /* Maximum width of content */
+            margin: 0 auto;         /* Centers the container horizontally */
+            background: white;      /* White background */
+            border-radius: 10px;    /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Shadow effect (x, y, blur, color) */
+            padding: 40px;          /* Inner spacing */
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;     /* Centers text horizontally */
+            margin-bottom: 40px;    /* Space below header */
+            padding-bottom: 20px;   /* Space inside header at bottom */
+            border-bottom: 3px solid #667eea; /* Bottom border line */
+        }
+
+        /* Heading Styles - Different sizes and colors */
+        h1 {
+            color: #333;            /* Dark gray color */
+            font-size: 2.5em;       /* 2.5 times the default size */
+            margin-bottom: 10px;    /* Space below */
+        }
+
+        h2 {
+            color: #667eea;         /* Purple color */
+            margin-top: 30px;       /* Space above */
+            margin-bottom: 15px;    /* Space below */
+            font-size: 1.8em;       /* 1.8 times the default size */
+        }
+
+        h3 {
+            color: #764ba2;         /* Darker purple */
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraph Styling */
+        p {
+            color: #555;            /* Gray text color */
+            margin-bottom: 15px;    /* Space between paragraphs */
+        }
+
+        /* Card Component - Reusable content box */
+        .card {
+            background: #f8f9fa;    /* Light gray background */
+            border-left: 4px solid #667eea; /* Colored left border */
+            padding: 20px;          /* Space inside the card */
+            margin: 20px 0;         /* Space above and below */
+            border-radius: 5px;     /* Slightly rounded corners */
+            transition: transform 0.3s ease; /* Smooth animation (property, duration, easing) */
+        }
+
+        /* Hover Effect - When mouse is over the card */
+        .card:hover {
+            transform: translateX(10px); /* Moves card 10px to the right */
+        }
+
+        /* Button Styling - Modern button design */
+        .button {
+            display: inline-block;  /* Allows width/height but stays inline */
+            padding: 12px 30px;     /* Space inside button (top/bottom left/right) */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient */
+            color: white;           /* Text color */
+            text-decoration: none;  /* Removes underline if used as link */
+            border-radius: 25px;    /* Rounded corners (pill shape) */
+            margin: 10px 5px;       /* Space around button */
+            transition: all 0.3s ease; /* Smooth transitions for all changes */
+            border: none;           /* Removes default border */
+            cursor: pointer;        /* Shows hand cursor on hover */
+            font-size: 16px;
+        }
+
+        /* Button Hover Effect */
+        .button:hover {
+            transform: translateY(-2px); /* Moves button up 2px */
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); /* Adds shadow */
+        }
+
+        /* List Styling */
+        ul {
+            margin-left: 30px;      /* Indents the list */
+            margin-bottom: 20px;    /* Space below list */
+        }
+
+        /* List Item Styling */
+        li {
+            color: #555;            /* Gray text */
+            margin-bottom: 8px;     /* Space between list items */
+        }
+
+        /* CSS Grid Layout - Modern layout system */
+        .grid {
+            display: grid;          /* Activates CSS Grid */
+            /* Creates columns: auto-fit fills space, minmax(250px, 1fr) = min 250px, max equal width */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;              /* Space between grid items */
+            margin: 20px 0;         /* Space above and below grid */
+        }
+
+        /* Grid Item Styling */
+        .grid-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        /* Grid Item Hover - Scales up on hover */
+        .grid-item:hover {
+            transform: scale(1.05); /* Increases size by 5% */
+        }
+
+        /* Form Styling */
+        form {
+            background: #f8f9fa;    /* Light gray background */
+            padding: 30px;          /* Space inside form */
+            border-radius: 10px;    /* Rounded corners */
+            margin: 20px 0;         /* Space around form */
+        }
+
+        /* Input Fields Styling - Targets specific input types and textarea */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;            /* Full width of container */
+            padding: 12px;          /* Space inside input */
+            margin: 10px 0;         /* Space above and below */
+            border: 2px solid #ddd; /* Light gray border */
+            border-radius: 5px;     /* Rounded corners */
+            font-size: 16px;
+            transition: border-color 0.3s ease; /* Smooth border color change */
+        }
+
+        /* Input Focus State - When user clicks in the field */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;          /* Removes default browser outline */
+            border-color: #667eea;  /* Changes border to purple */
+        }
+
+        /* Label Styling */
+        label {
+            display: block;         /* Takes full width, forces new line */
+            color: #333;            /* Dark gray */
+            font-weight: 600;       /* Bold text */
+            margin-top: 15px;       /* Space above label */
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;     /* Centers text */
+            margin-top: 40px;       /* Space above footer */
+            padding-top: 20px;      /* Space inside footer at top */
+            border-top: 2px solid #ddd; /* Top border line */
+            color: #777;            /* Gray text */
+        }
+
+        /* Highlight Class - Gradient text effect */
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;  /* Clips background to text */
+            -webkit-background-clip: text; /* Safari/Chrome support */
+            -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+            font-weight: bold;      /* Bold text */
+        }
+        /* ========== CSS STYLES END HERE ========== */
+    </style>
+</head>
+
+<body>
+    <!-- BODY section contains all visible content -->
+    <!-- Container div - wraps all content -->
+    <div class="container">
+        
+        <!-- HEADER - Top section of the page -->
+        <header>
+            <h1>HTML & CSS Practice Page</h1>
+            <!-- h1 = Main heading (only one per page) -->
+            
+            <p class="highlight">Learn and experiment with HTML elements and CSS styling</p>
+            <!-- p = paragraph, class="highlight" applies gradient text effect -->
+        </header>
+
+        <!-- SECTION 1 - Introduction -->
+        <section>
+            <h2>Welcome to Your Practice Space</h2>
+            <!-- h2 = Section heading -->
+            
+            <p>This is a starter HTML page with various elements and CSS styling. Feel free to modify and experiment with the code!</p>
+            
+            <!-- Card component with list -->
+            <div class="card">
+                <h3>What You'll Find Here:</h3>
+                <!-- h3 = Sub-section heading -->
+                
+                <ul>
+                    <!-- ul = Unordered list (bullets) -->
+                    <!-- li = List item -->
+                    <li>HTML semantic elements (header, section, footer)</li>
+                    <li>CSS Grid and Flexbox layouts</li>
+                    <li>Gradient backgrounds and hover effects</li>
+                    <li>Form elements with styling</li>
+                    <li>Responsive design principles</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 2 - Buttons -->
+        <section>
+            <h2>Interactive Elements</h2>
+            <!-- Button elements with .button class for styling -->
+            <button class="button">Click Me!</button>
+            <button class="button">Hover Over Me</button>
+            <button class="button">Try This Button</button>
+            <!-- Try hovering over these buttons to see the animation! -->
+        </section>
+
+        <!-- SECTION 3 - CSS Grid Demo -->
+        <section>
+            <h2>Grid Layout Example</h2>
+            <!-- Grid container with 3 items -->
+            <!-- Grid automatically adjusts columns based on screen size -->
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Card 1</h3>
+                    <p>Hover to see effect</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Card 2</h3>
+                    <p>Responsive grid layout</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Card 3</h3>
+                    <p>Automatic sizing</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 - Form Example -->
+        <section>
+            <h2>Sample Form</h2>
+            <!-- Form element - collects user input -->
+            <form>
+                <!-- Label connects to input using 'for' and 'id' -->
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <!-- input type="text" = text input field -->
+                <!-- id connects label to input -->
+                <!-- placeholder = gray hint text inside field -->
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="your.email@example.com">
+                <!-- type="email" validates email format -->
+
+                <label for="message">Message:</label>
+                <textarea id="message" rows="5" placeholder="Type your message here..."></textarea>
+                <!-- textarea = multi-line text input -->
+                <!-- rows="5" = shows 5 rows of text -->
+
+                <button type="submit" class="button">Submit Form</button>
+                <!-- type="submit" = submits the form when clicked -->
+            </form>
+        </section>
+
+        <!-- FOOTER - Bottom section -->
+        <footer>
+            <p>&copy; 2026 HTML & CSS Practice | Created for Learning</p>
+            <!-- &copy; = copyright symbol © -->
+        </footer>
+        
+    </div>
+    <!-- End of container -->
+    
+</body>
+<!-- End of visible content -->
+
+</html>
+<!-- End of HTML document -->
+
+<!-- 
+    KEY CONCEPTS TO REMEMBER:
+    
+    1. HTML Structure: <tag>content</tag>
+    2. Classes: <div class="classname"> for styling multiple elements
+    3. IDs: <input id="unique"> for unique elements
+    4. CSS Selectors: 
+       - element { } = targets all elements of that type
+       - .class { } = targets elements with that class
+       - #id { } = targets element with that ID
+       - element:hover { } = targets element when mouse hovers over it
+    
+    5. Box Model: margin -> border -> padding -> content
+    6. Colors: #hex, rgb(), rgba(), color names
+    7. Units: px (pixels), % (percent), em/rem (relative), vh/vw (viewport)
+    
+    EXPERIMENT IDEAS:
+    - Change colors and gradients
+    - Modify padding and margins to see spacing changes
+    - Add more cards or grid items
+    - Create new sections
+    - Try different hover effects
+    - Adjust border-radius for sharper or rounder corners
+-->
